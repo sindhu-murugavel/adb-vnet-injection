@@ -3,7 +3,7 @@ variable "no_public_ip" {
   default = true
 }
 
-variable "rglocation" {
+variable "location" {
   type    = string
   //default = "southeastasia"
   default = "Canada Central"
