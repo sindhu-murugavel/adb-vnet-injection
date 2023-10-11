@@ -1,2 +1,2 @@
 dbfs_prefix = "mycustomdbfs"
-cidr        = "10.179.0.0/20"
+cidr        = "10.179.0.0/16"

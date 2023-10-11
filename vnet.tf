@@ -14,11 +14,11 @@ resource "azurerm_network_security_group" "this" {
 }
 
 resource "azurerm_subnet" "public" {
-  name                 = "${local.prefix}-public"
+  name                 = "public-subnet"
   resource_group_name  = azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
-  address_prefixes     = [cidrsubnet(var.cidr, 3, 0)]
-  //address_prefixes = [cidrsubnet("10.179.0.0/16", 2, 1)]
+  //address_prefixes     = [cidrsubnet(var.cidr, 3, 0)]
+  address_prefixes = [cidrsubnet("10.179.0.0/16", 2, 1)]
 
   delegation {
     name = "databricks"
@@ -38,11 +38,11 @@ resource "azurerm_subnet_network_security_group_association" "public" {
 }
 
 resource "azurerm_subnet" "private" {
-  name                 = "${local.prefix}-private"
+  name                 = "private-subnet"
   resource_group_name  = azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
-  address_prefixes     = [cidrsubnet(var.cidr, 3, 1)]
-  //address_prefixes = [cidrsubnet("10.179.0.0/16", 2, 0)]
+  //address_prefixes     = [cidrsubnet(var.cidr, 3, 1)]
+  address_prefixes = [cidrsubnet("10.179.0.0/16", 2, 0)]
 
   delegation {
     name = "databricks"

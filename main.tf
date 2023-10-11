@@ -26,14 +26,17 @@ resource "azurerm_resource_group" "this" {
 
 locals {
   // dltp - databricks labs terraform provider
-  prefix   = join("-", [var.workspace_prefix, "${random_string.naming.result}"])
+  prefix = "wegmans"
+  //prefix   = join("-", [var.workspace_prefix, "${random_string.naming.result}"])
   location = var.rglocation
   dbfsname = join("", [var.dbfs_prefix, "${random_string.naming.result}"]) // dbfs name must not have special chars
+  //dbfsname = "wegmans"
 
   // tags that are propagated down to all resources
   tags = {
     Environment = "Testing"
     Epoch       = random_string.naming.result
     RemoveAfter = "2024-01-31"
+    Owner       = "sindhu.murugavel@databricks.com"
   }
 }

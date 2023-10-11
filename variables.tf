@@ -21,7 +21,7 @@ variable "node_type" {
 
 variable "workspace_prefix" {
   type    = string
-  default = "adb"
+  default = "wegmans"
 }
 
 variable "global_auto_termination_minute" {
@@ -31,6 +31,7 @@ variable "global_auto_termination_minute" {
 
 variable "cidr" {
   type    = string
-  default = "10.179.0.0/20"
-  //default = "10.179.0.0/16"
+  //default = "10.179.0.0/20"
+  default = "10.179.0.0/16"
 }
+
