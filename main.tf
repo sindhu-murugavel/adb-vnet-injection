@@ -26,7 +26,7 @@ resource "random_string" "naming" {
 
 data "azurerm_resource_group" "existing_rg" {
   name = "sindhu-wegmans-uc"
-}
+  }
 
 
 locals {

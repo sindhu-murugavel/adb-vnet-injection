@@ -2,7 +2,7 @@ resource "azurerm_virtual_network" "this" {
   name                = "${local.prefix}-vnet"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.existing_rg.name
-  address_space       = [var.cidr]
+  address_space       = [var.cidr,"10.0.0.0/16"]
   tags                = local.tags
 }
 
@@ -19,7 +19,7 @@ resource "azurerm_subnet" "public" {
   virtual_network_name = azurerm_virtual_network.this.name
   //address_prefixes     = [cidrsubnet(var.cidr, 3, 0)]
   address_prefixes = [cidrsubnet("10.179.0.0/16", 2, 1)]
-
+  private_link_service_network_policies_enabled = false
   delegation {
     name = "databricks"
     service_delegation {
@@ -43,7 +43,7 @@ resource "azurerm_subnet" "private" {
   virtual_network_name = azurerm_virtual_network.this.name
   //address_prefixes     = [cidrsubnet(var.cidr, 3, 1)]
   address_prefixes = [cidrsubnet("10.179.0.0/16", 2, 0)]
-
+  private_link_service_network_policies_enabled = false
   delegation {
     name = "databricks"
     service_delegation {
