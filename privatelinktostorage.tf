@@ -1,10 +1,10 @@
-resource "azurerm_subnet" "service" {
+/*resource "azurerm_subnet" "service" {
   name                 = "service"
   resource_group_name  = data.azurerm_resource_group.existing_rg.name
   virtual_network_name = azurerm_virtual_network.this.name
   address_prefixes     = ["10.0.1.0/24"]
   private_endpoint_network_policies_enabled = true
-}
+}*/
 
 resource "azurerm_subnet" "endpoint" {
   name                 = "endpoint"
@@ -65,7 +65,7 @@ resource "azurerm_private_endpoint" "example" {
     name                           = "${local.prefix}-privateserviceconnection"
     //private_connection_resource_id = azurerm_private_link_service.example.id
     private_connection_resource_id = azurerm_storage_account.example.id
-    subresource_names = ["blob"]
+    subresource_names = ["dfs"]
     is_manual_connection           = false
   }
 }
