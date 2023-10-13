@@ -5,6 +5,7 @@ resource "azurerm_storage_account" "example" {
   account_tier             = "Standard"
   account_replication_type = "GZRS"
   is_hns_enabled = true
+  public_network_access_enabled   = false
   tags = local.tags
 
 }
