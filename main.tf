@@ -18,11 +18,6 @@ resource "random_string" "naming" {
   length  = 6
 }
 
-/*resource "azurerm_resource_group" "this" {
-  name = "sindhu-wegmans-uc"
-  location = var.rglocation
-  tags     = local.tags
-}*/
 
 data "azurerm_resource_group" "existing_rg" {
   name = "sindhu-wegmans-uc"
@@ -30,12 +25,11 @@ data "azurerm_resource_group" "existing_rg" {
 
 
 locals {
-  // dltp - databricks labs terraform provider
+
   prefix = "wegmans"
-  //prefix   = join("-", [var.workspace_prefix, "${random_string.naming.result}"])
   location = var.location
   dbfsname = join("", [var.dbfs_prefix, "${random_string.naming.result}"]) // dbfs name must not have special chars
-  //dbfsname = "wegmans"
+
 
   // tags that are propagated down to all resources
   tags = {
