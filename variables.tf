@@ -4,7 +4,7 @@ variable "no_public_ip" {
 }
 
 variable "location" {
-  type    = string
+  type = string
   //default = "southeastasia"
   default = "Canada Central"
 }
@@ -30,7 +30,7 @@ variable "global_auto_termination_minute" {
 }
 
 variable "cidr" {
-  type    = string
+  type = string
   //default = "10.179.0.0/20"
   default = "10.179.0.0/16"
 }

@@ -21,12 +21,12 @@ resource "random_string" "naming" {
 
 data "azurerm_resource_group" "existing_rg" {
   name = "sindhu-wegmans-uc"
-  }
+}
 
 
 locals {
 
-  prefix = "wegmans"
+  prefix   = "wegmans"
   location = var.location
   dbfsname = join("", [var.dbfs_prefix, "${random_string.naming.result}"]) // dbfs name must not have special chars
 

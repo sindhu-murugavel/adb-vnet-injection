@@ -1,5 +1,5 @@
-resource "azurerm_storage_account" "example" {
-  name                     = "${local.prefix}stg"
+resource "azurerm_storage_account" "dummy" {
+  name                     = "${local.prefix}stg2"
   resource_group_name      = data.azurerm_resource_group.existing_rg.name
   location                 = var.location
   account_tier             = "Standard"
@@ -11,17 +11,17 @@ resource "azurerm_storage_account" "example" {
 }
 
 
-resource "azurerm_storage_container" "example" {
-  name                  = "mycontainer"
-  storage_account_name  = azurerm_storage_account.example.name
+resource "azurerm_storage_container" "dummy" {
+  name                  = "mycontainerdummy"
+  storage_account_name  = azurerm_storage_account.dummy.name
   container_access_type = "private" # You can set access type as per your requirements
 }
 
-resource "azurerm_storage_account_network_rules" "example" {
-  storage_account_id = azurerm_storage_account.example.id
+resource "azurerm_storage_account_network_rules" "dummy" {
+  storage_account_id = azurerm_storage_account.dummy.id
 
   default_action = "Deny"
-  virtual_network_subnet_ids = [azurerm_subnet.public.id, azurerm_subnet.private.id,
+  virtual_network_subnet_ids = [azurerm_subnet.public-dummy.id, azurerm_subnet.private-dummy.id,
     "/subscriptions/23a8c420-c354-43f9-91f5-59d08c6b3dff/resourceGroups/prod-canadacentral-snp-1-compute-4/providers/Microsoft.Network/virtualNetworks/prod-canadacentral-snp-1-compute-4/subnets/worker-subnet",
     "/subscriptions/31ef391b-7908-48ec-8c74-e432113b607b/resourceGroups/prod-canadacentral-snp-1-compute-2/providers/Microsoft.Network/virtualNetworks/prod-canadacentral-snp-1-compute-2/subnets/worker-subnet",
     "/subscriptions/56beece1-dbc8-40ca-8520-e1d514fb2ccc/resourceGroups/prod-canadacentral-snp-1-compute-9/providers/Microsoft.Network/virtualNetworks/prod-canadacentral-snp-1-compute-9/subnets/worker-subnet",
